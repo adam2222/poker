@@ -33,22 +33,39 @@ describe TowerGame do
     end
   end
 
-  describe '#run' do
-    it "prompts the user for input" do
-      expect(tower).to receive(:gets).at_least(2).times
-    end
-
-
-    it 'calls #move' do
-      expect(tower.run).to receive(:move_disc)
-    end
-
-    it  '' do
-
-    end
-  end
+  # describe '#run' do
+  #   it "prompts the user for input" do
+  #     expect(tower).to receive(:gets).at_least(2).times
+  #   end
+  #
+  #
+  #   it 'calls #move' do
+  #     expect(tower.run).to receive(:move_disc)
+  #   end
+  #
+  #   it  '' do
+  #
+  #   end
+  # end
 
   describe '#won?' do
+
+    it 'returns true if board is in win condition' do
+      tower.move_disc(0,2)
+      tower.move_disc(0,1)
+      tower.move_disc(2,1)
+      tower.move_disc(0,2)
+      tower.move_disc(1,0)
+      tower.move_disc(1,2)
+      tower.move_disc(0,2)
+      expect(tower.won?).to be_truthy
+      tower.won?
+    end
+
+    it 'returns false if board is not in win condition' do
+      expect(tower.won?).to be_falsey
+      tower.won?
+    end
 
   end
 
