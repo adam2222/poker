@@ -33,20 +33,29 @@ describe TowerGame do
     end
   end
 
-  # describe '#run' do
-  #   it "prompts the user for input" do
-  #     expect(tower).to receive(:gets).at_least(2).times
-  #   end
-  #
-  #
-  #   it 'calls #move' do
-  #     expect(tower.run).to receive(:move_disc)
-  #   end
-  #
-  #   it  '' do
-  #
-  #   end
-  # end
+  describe '#prompt' do
+
+    it 'asks the user for 2 positions' do
+      allow(tower).to receive(:gets).and_return("2")
+      expect(tower).to receive(:puts).twice
+      tower.prompt
+    end
+
+    it 'gets input for 1st and 2nd positions' do
+      allow(tower).to receive(:gets).and_return("2")
+      expect(tower).to receive(:gets).twice
+      tower.prompt
+    end
+
+    it 'returns an array of 2 fixnums' do
+      allow(tower).to receive(:gets).and_return("2")
+      expect(tower.prompt[0]).to be_a(Fixnum)
+      expect(tower.prompt[1]).to be_a(Fixnum)
+      tower.prompt
+    end
+
+
+  end
 
   describe '#won?' do
 

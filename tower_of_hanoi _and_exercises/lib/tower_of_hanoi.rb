@@ -16,26 +16,35 @@ class TowerGame
     board
   end
 
-  def run
-    # i = 0
-    # until i == 3
-    #   puts "Which pillar do you want to move a disc from?"
-    #   print "> "
-    #   from = gets.chomp.to_i
-    #   puts "which pillar do you want to move a disc to?"
-    #   print "> "
-    #   to = gets.chomp.to_i
-    #   move_disc(from, to)
-    #   i += 1
-    # end
+  def prompt
+    puts "Which pillar do you want to move a disc from?"
+    print "> "
+    from = gets.chomp.to_i
+
+    puts "which pillar do you want to move a disc to?"
+    print "> "
+    to = gets.chomp.to_i
+
+    [from, to]
   end
 
   def won?
     board == [[],[3,2,1],[]] || board == [[],[],[3,2,1]]
   end
 
-  # private
-  # def parse_input(input)
-  #
-  # end
+  def run
+    until won?
+      p board
+      from, to = prompt
+      move_disc(from, to)
+    end
+
+    puts "You won!"
+  end
+
+end
+
+if __FILE__ == $PROGRAM_NAME
+  game = TowerGame.new
+  game.run
 end
